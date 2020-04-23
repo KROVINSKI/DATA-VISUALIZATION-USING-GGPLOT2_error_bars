@@ -91,7 +91,6 @@ df.summary <- df %>%
   )
 df.summary
 
-
 # Results
 # A tibble: 3 x 3
 #   dose     sd   len
@@ -101,8 +100,42 @@ df.summary
 #[3] 2      3.77  26.1
 
 
+#*********************************
+## 3.) Key R functions
+#*********************************
+
+# Key R functions and error plot types
+# Key functions to create error plots using the summary statistics data:
+
+#geom_crossbar() for hollow bar with middle indicated by horizontal line
+#geom_errorbar() for error bars
+#geom_errorbarh() for horizontal error bars
+#geom_linerange() for drawing an interval represented by a vertical line
+#geom_pointrange() for creating an interval represented by a vertical line, with a point in the middle.
 
 
 
+#*********************************
+## 4.) Initializing the ggplot
+#*********************************
+# Direction 1:
+# Start by initializing ggplot with the summary statistics data:
+# Direction 2:   
+# Specify x and y as usually
+# Direction 3:
+#     Specify ymin = len-sd 
+# Direction 4:
+#     ymax = len+sd to add lower and upper error bars
+# Notes
+#     If you want only to add upper error bars but not the lower ones, 
+#     use ymin = len (instead of len-sd) and ymax = len+sd.
 
 
+# Initialize ggplot with data
+f <- ggplot(
+  df.summary, 
+  aes(x = dose, y = len, ymin = len-sd, ymax = len+sd)
+)
+
+f+ geom_errorbar(width = 0.2) +
+  geom_point(size = 1.5)
