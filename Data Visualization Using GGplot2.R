@@ -139,3 +139,22 @@ f <- ggplot(
 
 f+ geom_errorbar(width = 0.2) +
   geom_point(size = 1.5)
+
+
+
+# Horizontal error bars with mean points
+# Change the color by groups
+ggplot(df.summary, aes(x = len, y = dose, xmin = len-sd, xmax = len+sd)) +
+  geom_point() +
+  geom_errorbarh(height=.2)
+
+
+# Combine with jitter points
+ggplot(df, aes(dose, len)) +
+  geom_jitter(position = position_jitter(0.2), color = "darkgray") + 
+  geom_pointrange(aes(ymin = len-sd, ymax = len+sd),data = df.summary)
+
+# Combine with violin plots
+ggplot(df, aes(dose, len)) +
+  geom_violin(color = "darkgray", trim = FALSE) + 
+  geom_pointrange(aes(ymin = len-sd, ymax = len+sd), data = df.summary)
