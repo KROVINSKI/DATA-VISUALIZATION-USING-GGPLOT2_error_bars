@@ -5,6 +5,7 @@
 ## Title: DATA VISUALIZATION USING GGPLOT2
 ## Date: April 2020
 
+
 # R script below follows the tutorial on how to assign error bars in GGplot
 
 # Error Bars are used to visualize the variability of the plotted data. 
